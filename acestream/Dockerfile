@@ -2,6 +2,7 @@ FROM ubuntu:20.04
 LABEL maintainer="Rene Serral <rserral@gmail.com>"
 
 ARG ACE_STREAM_VERSION
+ENV ACE_STREAM_VERSION=${ACE_STREAM_VERSION:-3.1.75rc4_ubuntu_18.04_x86_64_py3.8}
 
 RUN DEBIAN_FRONTEND="noninteractive" && \
     apt-get update && apt-get --yes upgrade && \
