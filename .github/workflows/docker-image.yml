@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+env:
+  ACE_STREAM_VERSION="3.1.75rc4_ubuntu_18.04_x86_64_py3.8"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file acestream/Dockerfile --tag my-image-name:$(date +%s) --build-arg "ACE_STREAM_VERSION=$ACE_STREAM_VERSION"
