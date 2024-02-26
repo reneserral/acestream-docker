@@ -14,13 +14,17 @@ RUN DEBIAN_FRONTEND="noninteractive" && \
         python3-apsw \
 	python3-lxml \
 	python3-m2crypto \
+        python3-crypto \
+        python3-nacl \
+        python3-pip \
 	python3-pkg-resources
+RUN pip install pycryptodome
 RUN apt-get clean && rm --force --recursive /var/lib/apt/lists
 
-RUN curl --silent --insecure "https://download.acestream.media/linux/acestream_${ACE_STREAM_VERSION}.tar.gz" | \
+RUN cd /home && curl --silent --insecure "https://download.acestream.media/linux/acestream_${ACE_STREAM_VERSION}.tar.gz" | \
         tar --extract --gzip
 
 EXPOSE 6878/tcp
 
-ENTRYPOINT ["/start-engine"]
+ENTRYPOINT ["/home/start-engine"]
 CMD ["--client-console"]
