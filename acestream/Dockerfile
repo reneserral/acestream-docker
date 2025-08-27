@@ -18,8 +18,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         tar --extract --gzip
 
 COPY acestream.conf /home/acestream.conf
+COPY entrypoint.sh /home/entrypoint.sh
+RUN dos2unix /home/entrypoint.sh && chmod +x /home/entrypoint.sh
 
 EXPOSE 6878
 
-ENTRYPOINT ["/home/start-engine"]
-CMD ["--client-console"]
+ENTRYPOINT ["/home/entrypoint.sh"]
