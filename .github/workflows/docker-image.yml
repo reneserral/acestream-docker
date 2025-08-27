@@ -1,7 +1,7 @@
 name: Docker Image CI
 
 env:
-  ACE_STREAM_VERSION: "3.1.75rc4_ubuntu_18.04_x86_64_py3.8"
+  ACE_STREAM_VERSION: "3.2.3_ubuntu_22.04_x86_64_py3.10"
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v3
